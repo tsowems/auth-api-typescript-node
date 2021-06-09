@@ -23,21 +23,28 @@ const CreateIntegration = ({ router }) => {
     const code = routers.query.code;
     const token = getCookie('token');
     const [form, setForm] = useState(DEFAULT_DATA);
+    const redirect_url = getCookie('redirect_url');
 
     const submitForm = () => {
 
         createIntegration(form, token)
             .then(data => {
-                console.log(data)
+
                 if (data.error) {
                     setValues({ ...values, error: data.error });
                 } else {
-                    Router.push(`/user/integration/integrationlist`);
+                    if (redirect_url != 'undefined') {
+                        window.location = `https://${redirect_url}`;
+                        //window.location = 
+                    }
+                    else if (redirect_url == '' || redirect_url == 'undefined') {
+                        Router.push(`/user/integration/integrationlist`);
+                    }
                 }
             });
     }
     const handleChange = (e) => {
-        //const { name, value } = e.target;
+
         setForm({
             ...setForm,
             alias: e.target.value,
@@ -46,7 +53,6 @@ const CreateIntegration = ({ router }) => {
 
     }
 
-    console.log(code)
     return (
         <section className="hero is-fullheight">
             <div className="hero-body">
@@ -62,10 +68,10 @@ const CreateIntegration = ({ router }) => {
                             <div className="column is-one-third has-text-left">
                                 <div className="field">
                                     <label className="label">Alias Name</label>
-                                    <div className="control">
+                                    <div className="form-group">
                                         <input
                                             value={form.alias}
-                                            className="input is-medium"
+                                            className="form-control"
                                             type="text"
                                             name="alias"
                                             id="alias"
@@ -75,7 +81,7 @@ const CreateIntegration = ({ router }) => {
                                 <div className="control">
                                     <button type="button"
                                         onClick={submitForm}
-                                        className="button is-link is-fullwidth has-text-weight-medium is-medium">Create Integration</button>
+                                        className="btn btn-primary">Create Integration</button>
                                 </div>
                             </div>
 

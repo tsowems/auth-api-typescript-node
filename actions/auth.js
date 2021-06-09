@@ -33,8 +33,8 @@ export const preSignup = user => {
         .catch(err => console.log(err));
 };
 
-export const signup = user => {
-    return fetch(`${API}/signup`, {
+export const activate = user => {
+    return fetch(`${API}/auth/activate`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -148,6 +148,23 @@ export const isAuth = () => {
     }
 };
 
+export const allowedDomain = redirect_url => {
+    return fetch(`${API}/auth/allowed`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(redirect_url)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+}
+
 export const updateUser = (user, next) => {
     if (process.browser) {
         if (localStorage.getItem('user')) {
@@ -190,7 +207,7 @@ export const resetPassword = resetInfo => {
 };
 
 export const loginWithGoogle = user => {
-    return fetch(`${API}/google-login`, {
+    return fetch(`${API}/auth/google-login`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

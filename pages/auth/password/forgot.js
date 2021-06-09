@@ -23,7 +23,7 @@ const ForgotPassword = () => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, message: data.message, email: '', showForm: false });
+                setValues({ ...values, message: data.message, email: '', showForm: true });
             }
         });
     };

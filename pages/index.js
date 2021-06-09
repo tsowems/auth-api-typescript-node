@@ -9,12 +9,13 @@ const Index = () => {
     useEffect(() => {
         isAuth() && Router.push(`/user`);
     }, []);
+
+    useEffect(() => {
+        !isAuth() && Router.push(`/signin`);
+    }, []);
     return (
         <Layout>
-            <h2></h2>
-            <Link href="/signup">
-                <a></a>
-            </Link>
+
         </Layout>
     );
 };

@@ -3,17 +3,18 @@ import { signin, authenticate, isAuth, confirmcode } from '../../actions/auth';
 import Router from 'next/router';
 import Link from 'next/link';
 import LoginGoogle from './LoginGoogle';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 const SigninComponent = () => {
+
     const router = useRouter();
-    const { redirectUrl } = router.query;
+    const { redirect_url } = router.query;
     const [values, setValues] = useState({
         email: '',
         password: '',
         error: '',
         loading: false,
-        redirectUrl: '',
+        redirect_url: '',
         message: '',
         showForm: true
     });
@@ -27,7 +28,7 @@ const SigninComponent = () => {
     const handleSubmit = e => {
         e.preventDefault();
         setValues({ ...values, loading: true, error: false });
-        const user = { email, password, redirectUrl };
+        const user = { email, password, redirect_url };
 
         signin(user).then(data => {
 
@@ -38,8 +39,8 @@ const SigninComponent = () => {
                 // save user info to localstorage
                 // authenticate user
             } else {
-                if (data.redirectUrl !== '') {
-                    const url = data.redirectUrl;
+                if (data.redirect_url !== '') {
+                    const url = data.redirect_url;
                     const userCode = data.userCode;
                     const email = data.email;
                     window.location = `https://${url}/?code=${userCode}?email=${email}`;
@@ -77,6 +78,7 @@ const SigninComponent = () => {
                         type="email"
                         className="form-control"
                         placeholder="Type your email"
+                        required
                     />
                 </div>
 
@@ -87,6 +89,7 @@ const SigninComponent = () => {
                         type="password"
                         className="form-control"
                         placeholder="Type your password"
+                        required
                     />
                 </div>
 

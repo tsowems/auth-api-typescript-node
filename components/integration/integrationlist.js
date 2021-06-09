@@ -22,7 +22,6 @@ const IntegrationList = () => {
     const ITEMS_PER_PAGE = 5;
 
     const headers = [
-        { name: "No#", field: "id", sortable: false },
         { name: "Alias", field: "alias", sortable: true },
         { name: "Serice", field: "service", sortable: true },
         { name: "token", field: "access_token", sortable: false },
@@ -75,10 +74,10 @@ const IntegrationList = () => {
     const deleteIntegration = id => {
         removeIntegration(id, token).then(data => {
             if (data.error) {
-                console.log(data.error);
+
             } else {
                 setMessage(data.message);
-                //getData();
+
             }
         });
     };
@@ -123,10 +122,7 @@ const IntegrationList = () => {
                         <tbody>
                             {integrationsData.map(integration => (
                                 <tr>
-                                    <th scope="row" key={integration.id}>
-                                        {integration.id}
-                                    </th>
-                                    <td>{integration.alias}</td>
+                                    <th scope="row" key={integration.id}>{integration.alias}</th>
                                     <td>{integration.service}</td>
                                     <td>{integration.access_token}</td>
                                     <td><button className="btn btn-sm btn-danger" onClick={() => deleteConfirm(integration.id)}>

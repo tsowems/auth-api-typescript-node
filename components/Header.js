@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      <Navbar color="light" light expand="md">
+      <Navbar color="info" light expand="md">
         <Link href="/">
           <NavLink className="font-weight-bold">{APP_NAME}</NavLink>
         </Link>

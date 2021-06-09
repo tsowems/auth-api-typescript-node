@@ -41,7 +41,8 @@ export const listBlogsWithCategoriesAndTags = (skip, limit) => {
 };
 
 export const getAuthorized = () => {
-    window.location = 'https://webflow.com/oauth/authorize?client_id=34e9db56b650d4cde7d9962aad95f7d28f88a91fdbeedae232213ff5b66ce058&response_type=code';
+
+    window.location = 'http://localhost:5000/api/integrations/getAuthorized';
 
 };
 
