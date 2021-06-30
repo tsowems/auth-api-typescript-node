@@ -10,7 +10,7 @@ export const createIntegration = (form, token) => {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Bearer: `${token}`
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(form)
     })
@@ -68,7 +68,7 @@ export const listIntegrations = async (token) => {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                Bearer: `${token}`
+                Authorization: `Bearer ${token}`,
             },
         })
         return await response.json();
@@ -85,7 +85,7 @@ export const removeIntegration = (id, token) => {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            Bearer: `${token}`
+            Authorization: `Bearer ${token}`,
         }
     })
         .then(response => {

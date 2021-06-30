@@ -7,7 +7,7 @@ export const getProfile = token => {
         method: 'GET',
         headers: {
             Accept: 'application/json',
-            Bearer: `${token}`
+            Authorization: `Bearer ${token}`,
         }
     })
         .then(response => {

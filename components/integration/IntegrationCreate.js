@@ -33,11 +33,13 @@ const CreateIntegration = ({ router }) => {
                 if (data.error) {
                     setValues({ ...values, error: data.error });
                 } else {
-                    if (redirect_url != 'undefined') {
+                    // if (redirect_url != 'undefined') {
+                    if (redirect_url) {
                         window.location = `https://${redirect_url}`;
                         //window.location = 
                     }
-                    else if (redirect_url == '' || redirect_url == 'undefined') {
+                    // else if (redirect_url == '' || redirect_url == 'undefined') {
+                    else {
                         Router.push(`/user/integration/integrationlist`);
                     }
                 }
