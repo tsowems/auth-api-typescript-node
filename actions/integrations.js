@@ -42,7 +42,7 @@ export const listBlogsWithCategoriesAndTags = (skip, limit) => {
 
 export const getAuthorized = () => {
 
-    window.location = 'http://localhost:5000/api/integrations/getAuthorized';
+    window.location = `${API}/integrations/getAuthorized`;
 
 };
 
